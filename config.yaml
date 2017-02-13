@@ -3,13 +3,26 @@ basic:
     options:
       DEBUG: True
   site:
-    title: Tony!
+    title: Tony!0
     baseurl: ''
   db:
     global:
       tableprefix: ''
+ip:
+  maxaddnum: 256
+  allow:
+    global: true
+    private: true
+    multicast: False
+    loopback: False
+    linklocal: False
+    reserved: true
+  lists:
+    whitelist: true
+    blacklist: true
 defaults:
   wlbl:
+    devmode: true
     client:
       newallowed: True
       defaults:
@@ -23,8 +36,6 @@ defaults:
         allowblanktitle: False
     shortstrlen: 100
 
-
-
 api:
   enabled: True
   specdir: '.'
@@ -32,6 +43,10 @@ api:
     base:
       filename: 'spec.yaml'
       basepath: '/'
+      strictvalidation: True
+    dev:
+      filename: 'devspec.yaml'
+      basepath: '/dev'
       strictvalidation: True
   flask:
     host: '127.0.0.1'

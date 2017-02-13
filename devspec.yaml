@@ -1,0 +1,25 @@
+#Validation is done elsewhere as we need config info
+swagger: '2.0'
+info:
+  title: Wallball Dev API
+  version: "0.0.0-dev"
+consumes:
+  - application/json
+produces:
+  - application/json
+  - text/html
+paths:
+  /init:
+    get:
+      summary: db init
+      operationId: lib.dev.dbinit
+      responses:
+        '200':
+          description: DB init info
+  /conf:
+    get:
+      summary: Config dump
+      operationId: lib.dev.getconfig
+      responses:
+        '200':
+          description: Config returned

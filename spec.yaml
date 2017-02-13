@@ -12,98 +12,89 @@ paths:
   /:
     get:
       summary: Get the main page
-      operationId: api.lib.views.index
+      operationId: lib.views.info
       responses:
         '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/status'
-  /note:
-    post:
-      parameters:
-        - name: body
-          in: formData
-          description: Note body
-          required: false
-          type: string
-      summary: Make a new note
-      operationId: api.lib.views.makenote
+          description: Main overview page
+  /wl:
+    get:
+      summary: Returns IP whitelist
+      operationId: lib.views.wldump
       responses:
         '200':
-          description: Note created
-          schema:
-            $ref: '#/definitions/note.id'
+          description: IP Whitelist
         '400':
-          description: error
-
+          description: Error
+  # /note:
+  #   post:
+  #     parameters:
+  #       - name: body
+  #         in: formData
+  #         description: Note body
+  #         required: false
+  #         type: string
+  #     summary: Make a new note
+  #     operationId: api.lib.views.makenote
+  #     responses:
+  #       '200':
+  #         description: IP Added
+  #         schema:
+  #           $ref: '#/definitions/note.id'
+  #       '400':
+  #         description: error
+  #
   # /note/{id}:
   #   get:
   #     operationId: api.lib.views.note.get
+  #
+  # /rr:
+  #   get:
+  #     operationId: api.lib.views.rr
+  #     summary: Gets riff raff
+  #     produces:
+  #       - text/html
+  #     responses:
+  #       '200':
+  #         description: "RIFF RAFFFFFF"
 
-  /rr:
-    get:
-      operationId: api.lib.views.rr
-      summary: Gets riff raff
-      produces:
-        - text/html
-      responses:
-        '200':
-          description: "RIFF RAFFFFFF"
-
-
-
-parameters:
-  id:
-    name: id
-    description: Note ID
-    in: path
-    type: integer
-    required: true
-
-definitions:
-  note:
-    type: object
-    required:
-      - body
-    properties:
-      id:
-        type: integer
-        description: Unique identifier
-        example: 123
-        readOnly: true
-      title:
-        type: string
-        description: Note title
-        example: "Tony's Awesome Note"
-      body:
-        type: string
-        description: Note Body
-        example: "Note contents are here hope you like it!"
-      created:
-        type: string
-        format: date-time
-        description: Creation time
-        example: "2016-07-07T15:49:51.230+02:00"
-        readOnly: true
-      modified:
-        type: string
-        format: date-time
-        description: Time last modified
-        example: "2016-07-07T15:49:51.230+02:00"
-        readOnly: true
-  snippet:
-    type: object
-    required:
-      - body
-    properties:
-      body:
-        type: string
-      id:
-        type: integer
-  status:
-    type: array
-    required:
-      - status
-    properties:
-      status:
-        type: string
+#
+#
+# parameters:
+#   id:
+#     name: id
+#     description: Note ID
+#     in: path
+#     type: integer
+#     required: true
+#
+# definitions:
+#   -ip4address:
+#     type: object
+#     required:
+#       - address
+#     properties:
+#       id:
+#         type: integer
+#         description: Unique identifier from ipv4 address table
+#         example: 123
+#         readOnly: true
+#       ipaddress:
+#         type: string
+#         description: IP Address
+#         example: "1.2.3.4"
+#       description:
+#         type: string
+#         description: Description about the IP
+#         example: "Home Address"
+#       created:
+#         type: string
+#         format: date-time
+#         description: Creation time
+#         example: "2016-07-07T15:49:51.230+02:00"
+#         readOnly: true
+#       modified:
+#         type: string
+#         format: date-time
+#         description: Time last modified
+#         example: "2016-07-07T15:49:51.230+02:00"
+#         readOnly: true

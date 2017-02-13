@@ -25,29 +25,20 @@ Base = declarative_base()
 class Client(Base):
     __tablename__ = tablebase + 'client'
     id = Column(Integer, primary_key=True)
-    updatetype =  Column(Integer,default=wlbl['client']['defaults']['connectiontype'])
-    ipaddress = Column(String,Default=None)
-    description = Column(String,Default=None)
+    updatetype =  Column(Integer,default=wlblconf['client']['defaults']['connectiontype'])
+    host = Column(String,default=None)
+    description = Column(String,default=None)
     #filetype = Column(Integer,default=slimeconf['upload']['type'])
     created = Column(DateTime,default=None)
     modified = Column(DateTime,default=None)
 
-class IP4Address(Base):
-    __tablename__ = tablebase + 'ip4address'
+class IPAddress(Base):
+    __tablename__ = tablebase + 'ipaddress'
     id = Column(Integer, primary_key=True)
-    accessmode = Column(Integer,ForeignKey('ipaccessmode.id'))
-    ipaddress = Column(String)
-  def __repr__(self):
-    return self.ipaddress
-
-class IP6Address(Base):
-    __tablename__ = tablebase + 'ip6address'
-    id = Column(Integer, primary_key=True)
-    accessmode = Column(Integer,ForeignKey('ipaccessmode.id'))
-    ipaddress = Column(String)
-  def __repr__(self):
-    return self.ipaddress
-
+    accessmode = Column(Integer,default=0)
+    address = Column(String)
+    def __repr__(self):
+        return self.address
 
     #filetype = Column(Integer,default=wlblconf['upload']['text']['type'])
     #title = Column(String(shortsl),default=slimeconf['upload']['text']['title'],nullable=slimeconf['upload']['text']['allowblanktitle'])
@@ -65,8 +56,8 @@ class User(Base):
     accesslevel = Column(Integer,default=99)
     created = Column(DateTime,default=None)
     modified = Column(DateTime,default=None)
-  def __repr__(self):
-    return self.username
+    def __repr__(self):
+        return self.username
 
 # class Tag(Base):
 #   __tablename__ = tablebase + 'tags'

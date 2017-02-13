@@ -1,6 +1,6 @@
 import connexion
 import logging
-from api.lib.aux import getconfig
+from lib.aux import getconfig
 """
 api.py
 Created by Anthony Velardi on 01-15-2017

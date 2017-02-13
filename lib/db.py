@@ -5,10 +5,10 @@ Created by Anthony Velardi on 01-19-2017
 Core db functions for fun and profit
 """
 
-from api.lib.aux import getsecret, getconfig
+from lib.aux import getsecret, getconfig
 import sqlalchemy
 from sqlalchemy.orm.session import sessionmaker
-from api.lib.models import Base
+from lib.models import Base
 
 def db_info(ref='main'):
   """This function handles determining the db type and load the params.

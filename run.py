@@ -2,12 +2,13 @@ from wlbl import run_api
 from lib.aux import getconfig
 from lib.db import make_tables
 
+
+
+##Todo build preflight check
 def poop():
   config = getconfig()
-  print str(config)
   if config['api']['enabled']:
     run_api(config=config)
-
 
 
 
