@@ -1,0 +1,46 @@
+basic:
+  flask:
+    options:
+      DEBUG: True
+  site:
+    title: Tony!
+    baseurl: ''
+  db:
+    global:
+      tableprefix: ''
+defaults:
+  wlbl:
+    client:
+      newallowed: True
+      defaults:
+        connectiontype: 0
+        maxrange: 32
+    upload:
+      type: 0
+      text:
+        type: 0
+        title: 'Note'
+        allowblanktitle: False
+    shortstrlen: 100
+
+
+
+api:
+  enabled: True
+  specdir: '.'
+  specs:
+    base:
+      filename: 'spec.yaml'
+      basepath: '/'
+      strictvalidation: True
+  flask:
+    host: '127.0.0.1'
+    port: 7175
+    debug: true
+
+webapp:
+  enabled: False
+  flask:
+    host: '127.0.0.1'
+    port: 8008
+    debug: true
