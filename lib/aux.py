@@ -25,6 +25,6 @@ def validateip(ipaddr,config=getconfig()):
     If valid, return ip object, else return None for validation on other side
     """
     try:
-        return ipaddress.ip_address(ipaddr)
+        return ipaddress.ip_address(ipaddr.decode('utf8'))
     except:
         return None

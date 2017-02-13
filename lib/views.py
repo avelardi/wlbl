@@ -16,7 +16,8 @@ devmode = wlblconf['devmode']
 
 
 def error(msg="No information available"):
-  return str(msg),400
+    print("Error hit")
+    return json.dumps("{message:"+msg+"}"),400
 
 
 def info():
@@ -27,11 +28,22 @@ def wldump(wlid=None):
         s = get_db_session()
         return json.dumps([i.address for i in s.query(IPAddress).order_by(IPAddress.id)])
 
-def addip(ipaddr):
-    ip = validateip(ipaddr)
-    s = get_db_session()
-    s.add(note)
-    s.commit()
+def addip(ip):
+    ip = validateip(ip)
+    if not ip:
+        error(msg="Invalid IP")
+    else:
+        #Make sure it's not in the list
+        wl = wldump()
+        print(wl)
+        if ip.exploded in wl:
+            return error("IP already in list")
+        else:
+            i = IPAddress(address=str(ip.exploded))
+            s = get_db_session()
+            s.add(i)
+            s.commit()
+            return json.dumps("{'id':'%i'}"%(i.id))
 
 def main():
   pass

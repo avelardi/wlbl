@@ -25,6 +25,101 @@ paths:
           description: IP Whitelist
         '400':
           description: Error
+  /wl/add:
+    # get:
+    #   parameters:
+    #     - name: ip
+    #       in: query
+    #       description: IP Addr/range to add
+    #       required: True
+    #       type: string
+    #   operationId: lib.views.addip
+    #   responses:
+    #     '200':
+    #       description: Added Successfully
+    #     '400':
+    #       description: error
+    post:
+      parameters:
+        - name: ip
+          in: formData
+          description: IP Addr/range to add to the whitelist
+          required: True
+          type: string
+      summary: Add an IP or range to the whitelist
+      operationId: lib.views.addip
+      responses:
+        '200':
+          description: Added Successfully
+          schema:
+            $ref: '#/definitions/ipaddr'
+
+        '400':
+          schema:
+            $ref: '#/definitions/error'
+
+
+
+
+definitions:
+  error:
+    type: array
+    properties:
+      message:
+        type: String
+        description: error message
+        example: Invalid IP
+        readOnly: True
+  ipaddr:
+    type: object
+    required:
+      - ip
+    properties:
+      ip:
+        type: String
+        description: IP Or Network
+        example: 1.2.3.4
+      id:
+        type: integer
+        description: Unique identifier from ipv4 address table
+        example: 123
+        readOnly: true
+
+
+
+# definitions:
+#   -ip4address:
+#     type: object
+#     required:
+#       - address
+#     properties:
+#       id:
+#         type: integer
+#         description: Unique identifier from ipv4 address table
+#         example: 123
+#         readOnly: true
+#       ipaddress:
+#         type: string
+#         description: IP Address
+#         example: "1.2.3.4"
+#       description:
+#         type: string
+#         description: Description about the IP
+#         example: "Home Address"
+#       created:
+#         type: string
+#         format: date-time
+#         description: Creation time
+#         example: "2016-07-07T15:49:51.230+02:00"
+#         readOnly: true
+#       modified:
+#         type: string
+#         format: date-time
+#         description: Time last modified
+#         example: "2016-07-07T15:49:51.230+02:00"
+#         readOnly: true
+
+
   # /note:
   #   post:
   #     parameters:
